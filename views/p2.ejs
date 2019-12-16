@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+
+<script>
+    $(document).ready(function() //START DOM / DOC READY 
+    {
+       //js begin 
+       $("#btn").on("click", function(){
+            $.ajax({//begin ajax
+                method: "POST",
+                url: "/",
+                dataType: "JSON",
+                data:{"v1": $("#v1").val(),
+                "v2": $("#v2").val(),
+                "v3": $("#v3").val()
+                } ,
+                success: function(result,status) 
+                {
+                    //alert("DEBUG ITEM[0]" + item.price);
+                    //alert("")
+                    // alert("DEBUG !SUCCESS FUNCTION HIT!");
+                    // result.foodList.forEach(function(item){ %>
+                    // $("#results").append("<div class = 'p-2'> l <br></div>");
+                    // });
+                }//end success function
+            }); // end ajax 
+       }); //end button
+       
+       
+       
+        
+    });//END DOC READY DOM
+</script>
+
+
+<h1 class="centerText">Welcome to the Home Page!!</h1>
+
+
+<%- include('partials/footer') %>

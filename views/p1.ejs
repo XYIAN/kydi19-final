@@ -1,0 +1,89 @@
+<%- include('partials/header') %>
+
+<script>
+    $(document).ready(function() //START DOM / DOC READY 
+    {
+       //js begin 
+       let count = 0 ; 
+       let score = <% score %> 
+       $("#btn1").on("click", function()
+       {
+            
+           //$("#Franklin").is(":checked")
+           //alert("q2"+ $("#q2").val() )
+           if($("#q2").val() == "right" && score < 10 && count == 0)
+           {
+               rightAnswer2();
+               $("#btn1").html("<button id='btn1'> Continue </button>")
+               count++;
+               //alert("count:" + count);
+           }
+           else if(score == 0 && count == 0)
+           {
+               wrong(); 
+               $("#btn1").html("<button id='btn1'> Continue </button>")
+               count++; 
+           }
+           else if(count > 0)
+           {
+               //alert("testr");
+               <% attempts++ %>
+               console.log("attempts:" <%=attempts%>);
+               location.href = "/p1";
+           }
+       });
+       
+      
+       
+       
+       //functions 
+       function rightAnswer2()//template for correct answers 
+        {
+            $(`#response`).html("Correct!");
+            //$(`#response`).attr("class", "bg-success text-white");
+            $(`#img`).html("<img src='img/checkmark.png'>");
+            score += 10;
+            $("#score").html(score);
+            $("#response").css("color", "green"); 
+            $("#question").css("background-color", "green");
+            //$("#btn1").html("<button id='cont'> Continue </button>")
+            
+        }
+        function wrong()
+        {
+               $(`#img`).html("<img src='img/xmark.png'>");
+               $(`#response`).html("Wrong!");
+               //$("#question").css("color", "red");
+               $("#question").css("background-color", "red");
+        }
+     
+       
+        
+    });//END DOC READY DOM
+</script>
+
+
+<h1 class="centerText">Question 2</h1>
+
+
+<p class="centerText">What keyword is used to declare a variable in JavaScript?</p>
+
+<select id="q2">
+    <option>Select One</option>
+    <option value="r">const</option>
+    <option value="right">var</option>
+    <option value="r">assgn</option>
+    <option value="r">Var</option>
+</select>
+
+<div>
+        <h2 id="response"> </h2>
+        <span id="img"></span>
+        Partial score: <span id="score"><% score %> </span>
+        <!--<button id="cont">Continue</button>-->
+    </div>
+<button id="btn1">Submit Answer</button>
+
+<h4 id=""></h4>
+
+<%- include('partials/footer') %>

@@ -3,18 +3,271 @@
 <script>
     $(document).ready(function() //START DOM / DOC READY 
     {
-       //js begin 
-       
-       
-       
-       
-       
+        let score = 0 ; 
+        let count = 0;
         
+        $("#score").html(score); 
+       //js begin 
+    //   $("cont").on("click", function(){
+    //         $.ajax({//begin ajax
+    //             method: "GET",
+    //             url: "/p1",
+    //             dataType: "JSON",
+    //             data:{"score": $("score").val(),
+    //             "v2": $("#v2").val(),
+    //             "v3": $("#v3").val()
+    //             } ,
+    //             success: function(result,status) 
+    //             {
+    //                 //alert("DEBUG ITEM[0]" + item.price);
+    //                 alert("debug ajax hit");
+    //                 location.href = "/p1";
+    //                 // alert("DEBUG !SUCCESS FUNCTION HIT!");
+    //                 // result.foodList.forEach(function(item){ %>
+    //                 // $("#results").append("<div class = 'p-2'> l <br></div>");
+    //                 // });
+    //             }//end success function
+    //         }); // end ajax 
+    //   }); //end button
+    
+            //     $.ajax({//begin ajax
+            //     method: "GET",
+            //     url: "/p1",
+            //     dataType: "JSON",
+            //     data:{"score": $("score").val(),
+            //           "email": $("#email").val()
+                
+            //     } ,
+            //     success: function(result,status) 
+            //     {
+            //         //alert("DEBUG ITEM[0]" + item.price);
+            //         alert("debug ajax hit");
+                    
+            //         // alert("DEBUG !SUCCESS FUNCTION HIT!");
+            //         // result.foodList.forEach(function(item){ %>
+            //         // $("#results").append("<div class = 'p-2'> l <br></div>");
+            //         // });
+            //     }//end success function
+            // }); // end ajax
+       
+       $("#btn1").on("click", function()
+       {
+            $.ajax({//begin ajax
+                method: "GET",
+                url: "/p1",
+                dataType: "JSON",
+                data:{"score": $("#score").val(),
+                      "email": $("#email").val()
+                
+                } ,
+                success: function(result,status) 
+                {
+                    //alert("DEBUG ITEM[0]" + item.price);
+                    alert("debug ajax hit");
+                    console.log("score:"+score);
+                    console.log("email:" + email);
+                    
+                    // alert("DEBUG !SUCCESS FUNCTION HIT!");
+                    // result.foodList.forEach(function(item){ %>
+                    // $("#results").append("<div class = 'p-2'> l <br></div>");
+                    // });
+                }//end success function
+            }); // end ajax
+          
+           if($("#JavaScript").is(":checked") && score < 10 && count == 0)
+           {
+               rightAnswer2();
+               $("#btn1").html("<button id='btn1'> Continue </button>")
+               count++;
+               //alert("count:" + count);
+           }
+           else if(score == 0 && count == 0)
+           {
+               wrong(); 
+               $("#btn1").html("<button id='btn1'> Continue </button>")
+               count++; 
+           }
+           else if(count > 0)
+           {
+               //alert("testr");
+               location.href = "/p1";
+           }
+           let tester = $("input[name=q4]:checked").val();
+           if(tester == "JavaScript")
+           {
+               console.log("test");
+           }
+           
+        //   if($("#test").val() =)
+       });
+       
+      $("#repo").on("click", function(){
+          $("#question").html("<div> <div>")
+          $("#f1").html("Creating report for:" , $("#email").val());
+          $("#f2").html("total attempts: 1" , count); 
+          $("#f3").html("total score: 10",$("score").val());
+           
+      });
+       
+       
+       //functions 
+       function rightAnswer2()//template for correct answers 
+        {
+            $(`#response`).html("Correct!");
+            //$(`#response`).attr("class", "bg-success text-white");
+            $(`#img`).html("<img src='img/checkmark.png'>");
+            score += 10;
+            <% score += 10 %>
+            console.log("s" + <%= score %>)
+            $("#score").html(score);
+            $("#response").css("color", "green"); 
+            $("#question").css("background-color", "green");
+            //$("#btn1").html("<button id='cont'> Continue </button>")
+            
+        }
+        function wrong()
+        {
+               $(`#img`).html("<img src='img/xmark.png'>");
+               $(`#response`).html("Wrong!");
+               //$("#question").css("color", "red");
+               $("#question").css("background-color", "red");
+        }
+        
+      random();
+      function random()//display q4 choices
+      {
+          let q4ChoicesArray = ["Python", "JavaScript", "c#", "PHP", "C++"];
+          q4ChoicesArray = _.shuffle(q4ChoicesArray);
+          for(let i = 0 ; i < q4ChoicesArray.length; i++)
+          {
+              $('#test').append(`<input type="radio" name="q4" id="${q4ChoicesArray[i]}"value="${q4ChoicesArray[i]}"> <label for="${q4ChoicesArray[i]}"> ${q4ChoicesArray[i]}</label>`);
+          }
+      }
+     
     });//END DOC READY DOM
 </script>
+<!--NAVIGATION MENU +-->
 
-
-<h1 class="centerText">Welcome to the Home Page!!</h1>
-
-
+    <div class="centerText" id="question">
+    Email Address: <input type="text" id="email" name="email" required>
+    <br><br></br>
+        
+        
+        
+        <p class="centerText">What is the most popular language in web programming? </p>
+        <br><h6>Please select twice</h6> <br>
+        <input type="checkbox" id="Python"><label for="Python">Python</label>
+        <input type="checkbox" id="JavaScript"><label for="JavaScript">JavaScript</label>
+        <input type="checkbox" id="C#"><label for="C#">C#</label>
+        <input type="checkbox" id="PHP"><label for="PHP">PHP</label>
+        <div id="test"></div>
+    <div>
+        <h2 id="response"> </h2>
+        <span id="img"></span>
+        Partial score: <span id="score"> </span>
+        <!--<button id="cont">Continue</button>-->
+    </div>
+    
+    <button id="btn1">Submit Answer</button>
+    </div>
+    <br><br>
+    <button id="repo">Generate Report</button>
+    <div>
+        <div id="f1"></div>
+        <div id="f2"></div>
+        <div id="f3"></div>
+        <div id="f4"></div>
+    </div>
+    
+    
+        <br><br>
+    <h1>RUBRIC</h1>
+       
+  <table border="1" width="600" cellpadding="10px">
+    <tbody><tr><th>#</th><th>Task Description</th><th>Points</th></tr>
+     <tr style="background-color:#99E999">
+      <td>1</td>
+      <td>Express app includes partials for the header and footer <br></td>
+      <td width="20" align="center">10</td>
+     </tr>     
+     <tr style="background-color:#99E999">
+      <td>2</td>
+      <td>First question is displayed as the sample program, including images and form elements (all content is hard-coded)<br>
+        </td>
+      <td width="20" align="center">10</td>
+    </tr>     
+     <tr style="background-color:#99E999">
+      <td>3</td>
+      <td>The first question is graded using JavaScript/jQuery (partial score is properly updated) <br></td>
+      <td width="20" align="center">15</td>
+    </tr>     
+     <tr style="background-color:#99E999">
+      <td>4</td>
+      <td>The proper feedback is displayed when grading first question (red/green background, right/wrong icon) <br></td>
+      <td width="20" align="center">10</td>
+    </tr>   
+     <tr style="background-color:#99E999">
+      <td>5</td>
+      <td>There is JavaScript validation that prevents leaving the email textbox blank <br></td>
+      <td width="20" align="center">10</td>
+    </tr>       
+     <tr style="background-color:#99E999">
+      <td>6</td>
+      <td>Second question is displayed properly, question text and multiple choice items are retrieved from the database<br></td>
+      <td width="20" align="center">15</td>
+    </tr>     
+     <tr style="background-color:#99E999">
+      <td>7</td>
+      <td>Second question is graded via AJAX and a Web api <br></td>
+      <td width="20" align="center">15</td>
+    </tr>
+     <tr style="background-color:#FFC0C0">
+      <td>8</td>
+      <td>Third question is displayed properly, question text and multiple choice items are retrieved from the database<br></td>
+      <td width="20" align="center">15</td>
+    </tr> 
+	<tr style="background-color:#FFC0C0">
+      <td>9</td>
+      <td>Third question is graded via AJAX and a Web api (the same as question 2) <br></td>
+      <td width="20" align="center">10</td>
+    </tr>   
+     <tr style="background-color:#99E999">
+      <td>10</td>
+      <td>The multiple choices for all three questions are shuffled everytime the question is displayed <br></td>
+      <td width="20" align="center">15</td>
+    </tr>        
+	<tr style="background-color:#FFC0C0">
+      <td>11</td>
+      <td>When clicking on the "See Report" button, email and final score are saved into database <br></td>
+      <td width="20" align="center">20</td>
+    </tr>    
+    <tr style="background-color:#FFC0C0">
+      <td>12</td>
+      <td>The "report" view displays the number of times the user has taken the quiz (based on the email entered) <br></td>
+      <td width="20" align="center">10</td>
+    </tr>
+    <tr style="background-color:#FFC0C0">
+      <td>13</td>
+      <td>The "report" view displays the user's average score (based on the email entered) <br></td>
+      <td width="20" align="center">10</td>
+    </tr>   
+    <tr style="background-color:#99E999">
+      <td>14</td>
+      <td>Pages have a nice design (similar to the sample program) <br></td>
+      <td width="20" align="center">5</td>
+    </tr>      
+    <tr style="background-color:#99E999">
+      <td></td>
+      <td>This rubric is properly included AND UPDATED</td>
+      <td width="20" align="center">5</td>
+    </tr>
+        
+     <tr>
+      <td></td>
+      <td>T O T A L </td>
+      <td width="20" align="center">&nbsp;</td>
+    </tr> 
+  </tbody></table>
+    
+    
 <%- include('partials/footer') %>
