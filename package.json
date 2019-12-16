@@ -1,0 +1,27 @@
+{
+  "name": "kydi19-final",
+  "version": "1.0.0",
+  "description": "cst 336 final",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XYIAN/kydi19-final.git"
+  },
+  "author": "Kyle Dilbeck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/XYIAN/kydi19-final/issues"
+  },
+  "homepage": "https://github.com/XYIAN/kydi19-final#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express.js": "^1.0.0",
+    "mysql": "^2.17.1",
+    "sha256": "^0.2.0"
+  }
+}

@@ -1,0 +1,21 @@
+.head
+{
+    font-family: 'Baskervville', serif;
+}
+body
+{
+    background-color: DodgerBlue;
+    color: white;
+    text-align: center; 
+}
+.centerText
+{
+    text-align: center; 
+    
+}
+.centerIMG
+{
+    display:      block;
+    margin-left:  auto;
+    margin-right: auto;
+}
